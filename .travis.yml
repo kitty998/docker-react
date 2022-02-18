@@ -7,5 +7,6 @@ services:
 before_install:
   - docker build -t katarinacimesa/docker-react -f Dockerfile .
 
+
 script:
   - docker run -e CI=true katarinacimesa/docker-react npm run test -- --coverage

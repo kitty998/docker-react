@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - /app/node_modules 
+      # Do not try to reference this contained directory back to the local current working directory
+      - .:/app
+  tests: 
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /app/node_modules 
+      # Do not try to reference this contained directory back to the local current working directory
+      - .:/app
+    command: ["npm", "run", "test"]
